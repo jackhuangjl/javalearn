@@ -1,6 +1,11 @@
 package cn.lenovo.loop;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -13,7 +18,6 @@ public class StringLearn {
 	 */
 	@Test
 	public void getSubStringIndex() {
-
 		System.out.println("请输入字符串");
 		Scanner sc = new Scanner(System.in);
 		String inputString = sc.nextLine();
@@ -50,5 +54,48 @@ public class StringLearn {
 			fromIndex = indexOf + subString.length();
 		}
 		
+	}
+	/**
+	 * 2.给定一个由数字组成的字符串,如:"1239586838923173478943890234092",统计
+	 * 	出每个数字出现的次数		
+	 */
+	@Test
+	public void getNumberCount(){
+		
+		System.out.println("请输入一串数字字符串：");
+		Scanner sc = new Scanner(System.in);
+		
+		String numberString = sc.nextLine();
+		Map<String,Integer> map = new HashMap<>();
+		for(int i = 0; i < numberString.length(); i ++){		
+			String keyString = Character.toString(numberString.charAt(i));
+			if(map.containsKey(keyString)){
+				map.put(keyString, map.get(keyString) + 1);
+			}else{
+				map.put(keyString,1);
+			}
+			
+/*			if(map.containsKey(Character.toString(numberString.charAt(i)))){
+				map.put(Character.toString(numberString.charAt(i)), map.get(numberString.charAt(i)) + 1);
+			}else{
+				map.put(Character.toString(numberString.charAt(i)),1);
+			}*/
+		}
+		Set<Entry<String, Integer>> entries = map.entrySet();
+		for (Entry<String, Integer> entry : entries) {
+			System.out.println(entry.getKey() + " = " + entry.getValue());
+		}
+	}
+	
+	@Test
+	public void reverseString(){
+		System.out.println("请输入字符串");
+		Scanner sc = new Scanner(System.in);
+		String inputString = sc.nextLine();
+		
+		StringBuffer stringBuffer = new StringBuffer(inputString);
+		stringBuffer.reverse();
+		
+		System.out.println(stringBuffer);
 	}
 }
